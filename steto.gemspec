@@ -5,11 +5,11 @@ require "steto/version"
 Gem::Specification.new do |s|
   s.name        = "steto"
   s.version     = Steto::VERSION
-  s.authors     = ["Alban Peignier"]
-  s.email       = ["alban@tryphon.eu"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.authors     = ["Alban Peignier", "Florent Peyraud"]
+  s.email       = ["alban@tryphon.eu", "florent@tryphon.eu"]
+  s.homepage    = "https://github.com/tryphon/steto"
+  s.summary     = %q{Check system status}
+  s.description = %q{Ruby engine to check system status (with Nagios or custom checks)}
 
   s.rubyforge_project = "steto"
 
