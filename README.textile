@@ -1,0 +1,53 @@
+h1. Steto
+
+Steto is a simple to check system status.
+
+This first release can :
+
+* use Nagios plugin
+* define a check with a simple block
+* configure via an extensible DSL
+* run checks with several threads
+* report via several customizable Reporters
+
+h2. Sample
+
+<pre>
+require 'steto'
+
+Steto.config do
+  # complete syntax
+  check :load, Steto::NagiosCheck, :command => "/usr/lib/nagios/plugins/check_load", :options => { :warning => "1,0.5,0.5", :critical => "1,1,1"} 
+
+  # shortcut for nagios
+  nagios :disk_space, "check_disk", :warning => "10%"
+
+  # make your helpers
+  def ping(host)
+    nagios "ping_#{host.split('.')[1]}", "check_ping", :hostname => host, :warning => "100,1%", :critical => "300,20%", :use_ipv4 => true
+  end
+
+  ping "www.google.com" 
+  ping "stream.tryphon.eu"
+
+  def process(name)
+    nagios "process_#{name}", "check_procs", :critical => "1:", :command => name
+  end
+
+  process "apache2"
+  process "icecast2"
+  
+  # check in one line
+  check :if_link do
+    `sudo /sbin/ethtool eth2` =~ /Link detected: yes/ ? :ok : :critical
+  end
+
+  # load external files
+  Dir["/etc/steto/**/*.rb")].each { |f| load f }
+
+  report Steto::LoggerReporter
+  report Steto::BeepReporter
+end
+
+Steto.default_engine.check.report
+</pre>
