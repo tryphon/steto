@@ -10,7 +10,7 @@ module Cocaine
       begin
         run_without_exit_status
       ensure
-        @exit_status = $?.exitstatus
+        @exit_status = $?.exitstatus if $?
       end
     end
     alias_method :run, :run_with_exit_status

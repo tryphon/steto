@@ -6,6 +6,7 @@ module Steto
     attr_accessor :command, :options
     
     def initialize(attributes = {})
+      self.command = ""
       self.options = {}
       self.attributes = attributes
     end
@@ -29,11 +30,16 @@ module Steto
     end
 
     def status_from_command_line
-      { 0 => :ok,
-        1 => :warning,
-        2 => :critical,
-        3 => :unknown
-      }[command_line.exit_status]
+      case command_line.exit_status
+      when 0
+        :ok
+      when 1
+        :warning
+      when 2
+        :critical
+      else
+        :unknown
+      end
     end
 
   end

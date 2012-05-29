@@ -45,4 +45,13 @@ describe Steto::NagiosCheck do
     
   end
 
+  describe "#status_from_command_line" do
+    
+    it "should return unknown when exitstatus is not defined" do
+      subject.command_line.stub :exit_status => nil
+      subject.status_from_command_line.should == :unknown
+    end
+
+  end
+
 end
