@@ -12,6 +12,15 @@ describe Steto::Engine do
       subject.check
     end
 
+    it "should set as unknown a failing check" do
+      failing_check = Steto::ProcCheck.new(:name => :fail) do
+        raise "fail"
+      end
+      subject.checks << failing_check
+      subject.check
+      failing_check.status.should be_unknown
+    end
+
   end
 
   describe "#config" do

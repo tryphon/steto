@@ -18,7 +18,12 @@ module Steto
 
     def check
       Parallel.each(checks, :in_threads => 4) do |check|
-        check.check
+        begin
+          check.check
+        rescue => e
+          check.status = :unknown
+          check.text = e.to_s
+        end
       end
       self
     end
