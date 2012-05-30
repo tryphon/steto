@@ -7,7 +7,23 @@ module Steto
     end
 
     def check
-      self.status = @block.call
+      self.status = status_from_response(@block.call)
     end
+
+    def status_from_response(response)
+      case response
+      when Steto::Status
+        response
+      when Symbol
+        Status.new(response)
+      when true
+        Status.new(:ok)
+      when false
+        Status.new(:critical)
+      when nil
+        Status.new(:unknown)
+      end
+    end
+
   end
 end
