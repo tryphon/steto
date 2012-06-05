@@ -42,6 +42,12 @@ describe Steto::NagiosCheck do
       subject.stub :options => { :warning => "1,0.5,0.5", :critical => "1,1,1" }
       subject.command_line.command.should == "dummy --critical='1,1,1' --warning='1,0.5,0.5'"
     end
+
+    it "should rename option with underscores" do
+      subject.stub :command => "dummy"
+      subject.stub :options => { :with_underscore => "yes" }
+      subject.command_line.command.should == "dummy --with-underscore='yes'"
+    end
     
   end
 

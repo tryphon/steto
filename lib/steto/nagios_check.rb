@@ -19,11 +19,11 @@ module Steto
     def command_line
       # => "--critical=:critical --warning=:warning"
       params = options.map do |option, value| 
-        option = option.to_s.gsub("_","-")
+        cli_option = option.to_s.gsub("_","-")
         unless value == true
-          "--#{option}=:#{option}"
+          "--#{cli_option}=:#{option}"
         else
-          "--#{option}"
+          "--#{cli_option}"
         end
       end.sort.join(' ')
       @command_line ||= Cocaine::CommandLine.new(command, params, options.merge(:expected_outcodes => [0, 1, 2, 3]))
