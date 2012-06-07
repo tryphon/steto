@@ -1,13 +1,15 @@
 module Steto
   class ProcCheck < BaseCheck
 
+    attr_accessor :block
+
     def initialize(attributes = {}, &block)
       self.attributes = attributes
-      @block = block
+      self.block = block
     end
 
     def check
-      self.status = status_from_response(@block.call)
+      self.status = status_from_response(block.call)
     end
 
     def status_from_response(response)

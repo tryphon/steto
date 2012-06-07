@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe Steto::ProcCheck do
 
+  subject { Steto::ProcCheck.new { true } }
+
   describe "#status_from_response" do
     
     it "should return ok when response is true" do
@@ -25,6 +27,5 @@ describe Steto::ProcCheck do
     end
 
   end
-  
 
 end

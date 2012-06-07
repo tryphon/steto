@@ -26,4 +26,5 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency "cocaine"
   s.add_runtime_dependency "parallel"
+  s.add_runtime_dependency "json"
 end

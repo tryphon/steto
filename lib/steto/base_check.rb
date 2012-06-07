@@ -24,5 +24,10 @@ module Steto
       check_if_needed
       @text
     end
+
+    def to_json
+      { :name => name, :status => status, :text => text }.to_json
+    end
+
   end
 end

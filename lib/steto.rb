@@ -11,6 +11,7 @@ module Steto
   end
 end
 
+require 'json'
 require 'steto/cocaine_ext'
 
 require 'steto/status'
