@@ -25,8 +25,8 @@ module Steto
       @text
     end
 
-    def to_json
-      { :name => name, :status => status, :text => text }.to_json
+    def to_json(*args)
+      { :name => name, :status => status, :text => text }.to_json(*args)
     end
 
   end

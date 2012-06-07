@@ -25,6 +25,10 @@ describe Steto::BaseCheck do
       JSON.parse(subject.to_json).should include("status" => "critical")
     end
 
+    it "should support json for an array" do
+      JSON.parse([subject].to_json).size.should == 1
+    end
+
   end
 
 end
