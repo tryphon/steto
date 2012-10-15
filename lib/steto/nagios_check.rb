@@ -26,7 +26,10 @@ module Steto
           "--#{cli_option}"
         end
       end.sort.join(' ')
-      @command_line ||= Cocaine::CommandLine.new(command, params, options.merge(:expected_outcodes => [0, 1, 2, 3]))
+
+      command_options = Hash[options.map { |k,v| [ k, v.to_s ] }]
+
+      @command_line ||= Cocaine::CommandLine.new(command, params, command_options.merge(:expected_outcodes => [0, 1, 2, 3]))
     end
 
     def status_from_command_line

@@ -32,19 +32,29 @@ describe Steto::NagiosCheck do
 
   describe "#command_line" do
 
-    it "should use command as binary" do
+    before do
       subject.stub :command => "dummy"
+    end
+
+    it "should use command as binary" do
       subject.command_line.command.should == "dummy"
     end
 
     it "should use options as parameters" do
-      subject.stub :command => "dummy"
       subject.stub :options => { :warning => "1,0.5,0.5", :critical => "1,1,1" }
       subject.command_line.command.should == "dummy --critical='1,1,1' --warning='1,0.5,0.5'"
     end
 
+    it "should support non string options" do
+      subject.stub :options => { :port => 4567 }
+      begin
+        subject.command_line.command.should == "dummy --port='4567'"
+      rescue => e
+        puts e.backtrace.join("\n")
+      end
+    end
+
     it "should rename option with underscores" do
-      subject.stub :command => "dummy"
       subject.stub :options => { :with_underscore => "yes" }
       subject.command_line.command.should == "dummy --with-underscore='yes'"
     end
