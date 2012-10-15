@@ -21,10 +21,10 @@ Gem::Specification.new do |s|
   # specify any dependencies here; for example:
   s.add_development_dependency "rspec"
   s.add_development_dependency "rake"
-  s.add_development_dependency "rcov"
+  s.add_development_dependency "simplecov"
   s.add_development_dependency "RedCloth"
 
-  s.add_runtime_dependency "cocaine"
+  s.add_runtime_dependency "cocaine", "0.2.1"
   s.add_runtime_dependency "parallel"
   s.add_runtime_dependency "json"
 end
