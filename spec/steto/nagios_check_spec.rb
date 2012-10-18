@@ -47,11 +47,12 @@ describe Steto::NagiosCheck do
 
     it "should support non string options" do
       subject.stub :options => { :port => 4567 }
-      begin
-        subject.command_line.command.should == "dummy --port='4567'"
-      rescue => e
-        puts e.backtrace.join("\n")
-      end
+      subject.command_line.command.should == "dummy --port='4567'"
+    end
+
+    it "should support short options" do
+      subject.stub :options => { :p => 4567 }
+      subject.command_line.command.should == "dummy -p '4567'"
     end
 
     it "should rename option with underscores" do
