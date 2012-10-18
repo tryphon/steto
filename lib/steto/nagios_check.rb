@@ -19,7 +19,7 @@ module Steto
     def command_line
       # => "--critical=:critical --warning=:warning"
       params = options.map do |option, value| 
-        unless option.size == 1
+        unless option.to_s.size == 1
           cli_option = option.to_s.gsub("_","-")
           unless value == true
             "--#{cli_option}=:#{option}"
