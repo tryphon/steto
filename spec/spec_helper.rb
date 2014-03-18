@@ -1,8 +1,9 @@
 require 'rubygems'
 require 'bundler/setup'
 
-require 'rspec'
+require 'simplecov-default'
 
+require 'rspec'
 require 'steto' # and any other gems you need
 
 RSpec.configure do |config|
