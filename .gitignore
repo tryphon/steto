@@ -5,3 +5,4 @@ pkg/*
 *~
 coverage/
 README.html
+.ruby-version
